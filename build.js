@@ -3,6 +3,9 @@
 const fs = require('fs');
 const path = require('path');
 const { Parcel } = require('@parcel/core');
+require('dotenv').config();
+
+
 
 const ROOT = process.cwd();
 const SRC_DIR = path.join(ROOT, 'src');
@@ -10,6 +13,7 @@ const DIST_DIR = path.join(ROOT, 'dist');
 
 const ENTRY_EXT_RE = /\.(mjs|js|ts|tsx|jsx)$/i;
 const STATIC_EXT_RE = /\.(html?|css|png|jpg|jpeg|gif|svg|ico|json)$/i;
+
 
 function isLikelyLocalFile(str) {
   if (typeof str !== 'string') return false;
@@ -66,7 +70,11 @@ function rewriteManifestPaths(obj, replacer) {
 }
 
 async function build() {
-  if (!fs.existsSync(DIST_DIR)) fs.mkdirSync(DIST_DIR, { recursive: true });
+  if (fs.existsSync(DIST_DIR)) {
+    fs.rmSync(DIST_DIR, { recursive: true, force: true });
+    console.log(`\n🧹 Папка dist очищена`);
+  }
+  fs.mkdirSync(DIST_DIR, { recursive: true });
 
   const entries = fs.readdirSync(SRC_DIR, { withFileTypes: true });
 
@@ -140,11 +148,9 @@ async function build() {
           distDir: extDistPath,
           publicUrl: './',
         },
-        "transformers": {
-          "*.js": ["parcel-transformer-env-variables-injection"]
-        },
+        env: process.env,   // <--- ВАЖНО: передаём переменные окружения в Parcel
         shouldDisableCache: true,
-        shouldContentHash: false, // чтобы имена файлов были предсказуемыми
+        shouldContentHash: false,
       });
 
       try {
