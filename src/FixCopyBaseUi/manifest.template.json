@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Fix Copy Base Ui",
+  "version": "1.0",
+  "description": "",
+  "icons": {
+    "16": "assets/icons/favicon-16x16.png",
+    "32": "assets/icons/favicon-32x32.png",
+    "48": "assets/icons/favicon-48x48.png",
+    "128": "assets/icons/favicon-48x48.png"
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://copybase.ru/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://copybase.ru/*"],
+      "js": ["./contentScript.js"]
+    }
+  ]
+}
