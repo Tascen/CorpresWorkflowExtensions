@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Scan Results</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Результат проверки портов</h1>
+    <div id="meta"></div>
+    <div id="status">Загрузка...</div>
+    <div id="summary"></div>
+    <div class="filters">
+      <label><input type="checkbox" id="filter-active" checked> Активные</label>
+      <label><input type="checkbox" id="filter-inactive" checked> Неактивные</label>
+      <label><input type="checkbox" id="filter-fresh" checked> Новые</label>
+      <label><input type="checkbox" id="filter-stale" checked> Старые</label>
+    </div>
+  </header>
+  <table id="table">
+    <thead><tr><th>Порт</th><th>Доступность</th><th>Статус</th><th>URL</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <script src="results.js"></script>
+</body>
+</html>
