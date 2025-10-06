@@ -1,6 +1,8 @@
 (()=>{
   console.log("FixCopyBaseUi<Fix Copy Base Ui>");
 
+  
+
   (function fixRowsInTableOnPageUpdateProtocol() {
     if (!location.href.includes("/Logs")) {return}
 

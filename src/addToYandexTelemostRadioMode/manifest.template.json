@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Add in Yandex telemost radio mode for micro",
+  "version": "1.0",
+  "description": "",
+  "icons": {
+    "16": "assets/icons/favicon-16x16.png",
+    "48": "assets/icons/favicon-48x48.png",
+    "128": "assets/icons/favicon-64x64.png"
+  },
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+    "storage",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "./someModule/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./contentScript.js"]
+    }
+  ]
+}
